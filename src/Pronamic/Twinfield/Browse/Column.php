@@ -6,7 +6,7 @@ class Column
 {
     protected $id;
     protected $field;
-    protected $operator;
+    protected $operator = 'none';
     protected $from;
     protected $to;
     protected $label;

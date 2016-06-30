@@ -97,27 +97,6 @@ class BrowseDocument extends \DOMDocument
                 $columnElement->appendChild($fromElement);
             }
             
-            if($column->getTo() !== null)
-            {
-                $toElement = $this->createElement('to');
-                
-                $node = $this->createTextNode($column->getTo());
-                
-                $toElement->appendChild($node);
-                
-                $columnElement->appendChild($toElement);
-            } else {
-                // Fix to to from for now...
-                
-                $toElement = $this->createElement('to');
-                
-                $node = $this->createTextNode($column->getFrom());
-                
-                $toElement->appendChild($node);
-                
-                $columnElement->appendChild($toElement);
-            }
-            
             if($column->getOperator() !== null)
             {
                 $operatorElement = $this->createElement('operator');
@@ -129,7 +108,28 @@ class BrowseDocument extends \DOMDocument
                 $columnElement->appendChild($operatorElement);
             }
             
+            if($column->getTo() !== null)
+            {
+                $toElement = $this->createElement('to');
+                
+                $node = $this->createTextNode($column->getTo());
+                
+                $toElement->appendChild($node);
+                
+                $columnElement->appendChild($toElement);
+            } else if($column->getOperator() !== 'none') {
+                
+                $toElement = $this->createElement('to');
+                
+                $node = $this->createTextNode($column->getFrom());
+                
+                $toElement->appendChild($node);
+                
+                $columnElement->appendChild($toElement);
+            }
+
             $this->columnsElement->appendChild($columnElement);
+
         }
     }
 }

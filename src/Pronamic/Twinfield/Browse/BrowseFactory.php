@@ -7,6 +7,7 @@ use \Pronamic\Twinfield\Request as Request;
 
 use \Pronamic\Twinfield\Browse\Browse;
 use \Pronamic\Twinfield\Browse\BrowseDocument;
+use \Pronamic\Twinfield\Browse\Mapper\BrowseMapper;
 
 /**
  * CustomerFactory
@@ -62,20 +63,20 @@ class BrowseFactory extends ParentFactory
 
             // Gets a new instance of CustomersDocument and sets the $customer
             $browseDocument = new DOM\BrowseDocument();
+            
             $browseDocument->addBrowse($browse);
             
-            var_dump($browseDocument->saveXML());
+            // Send the DOM document request and set the response
+            $response = $service->send($browseDocument);
+            
+            $this->setResponse($response);
 
-            // // Send the DOM document request and set the response
-            // $response = $service->send($browseDocument);
-            // $this->setResponse($response);
-
-            // // Return a bool on status of response.
-            // if ($response->isSuccessful()) {
-            //     return true;
-            // } else {
-            //     return false;
-            // }
+            // Return a bool on status of response.
+            if ($response->isSuccessful()) {
+                return BrowseMapper::map($response);
+            } else {
+                return false;
+            }
         }
     }
 }
