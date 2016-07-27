@@ -194,7 +194,12 @@ foreach($browseResult->getLines() as $line) {
 	echo $line->getField('fin.trs.head.number')->getValue() . "\n";
 }
 ```
-
+#### Ledgers
+You can receive a list of all PNL ledgers in the administration like so:
+```
+$ledgerFactory = new \Pronamic\Twinfield\Ledger\LedgerFactory($config);
+$ledgers = $ledgerFactory->all('PNL');
+```
 
 #### Notes
 
@@ -222,6 +227,7 @@ restructure or alteration please bring up in an issue first.
 | [Dimension Types](https://c1.twinfield.com/webservices/documentation/#/ApiReference/Masters/DimensionTypes)     |                    |                    |                    |                    | Pronamic/Twinfield/Dimension/Type                                                                                       |
 | [Offices](https://c1.twinfield.com/webservices/documentation/#/ApiReference/Masters/Offices)                    |                    | :white_check_mark: |                    |                    | Pronamic/Twinfield/Office                                                                                               |
 | [Vat types](https://c3.twinfield.com/webservices/documentation/#/ApiReference/Miscellaneous/Finder)             |                    | :white_check_mark: |                    |                    | Pronamic/Twinfield/VatCode                                                                                              |
+| [Ledger](https://c3.twinfield.com/webservices/documentation/#/ApiReference/Miscellaneous/Finder)          |                    | :white_check_mark: |                    |                    | Pronamic/Twinfield/Ledger                                                                                              |
 
 
 ## Build
@@ -243,6 +249,7 @@ restructure or alteration please bring up in an issue first.
 *	[Pronamic](http://pronamic.nl/)
 *	[Remco Tolsma](http://remcotolsma.nl/)
 *   [Emile Bons](http://www.emilebons.nl)
+*   [Vincent Swarte](https://betabug.nl/)
 
 
 ## License
